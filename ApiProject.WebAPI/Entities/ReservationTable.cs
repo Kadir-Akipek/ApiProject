@@ -1,6 +1,6 @@
 ﻿namespace ApiProject.WebAPI.Entities
 {
-	public class ReservationTable
+	public class Reservation
 	{
 		public int ReservationId { get; set; }
 		public string NameSurname { get; set; }
