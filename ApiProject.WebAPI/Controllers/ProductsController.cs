@@ -6,6 +6,7 @@ using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ApiProject.WebAPI.Controllers
 {
@@ -85,6 +86,12 @@ namespace ApiProject.WebAPI.Controllers
 			_context.SaveChanges();
 			return Ok("Ekleme işlemi başarılı");
 		}
-
+		[HttpGet("ProductListWithCategory")]
+		public IActionResult ProductListWithCategory()
+		{
+			//include ile bir başka tablonun içeriğini ekleyebiliriz
+			var value = _context.Products.Include(x => x.Category).ToList();
+			return Ok(_mapper.Map<List<ResultProductWithCategoryDTO>>(value));
+		}
 	}
 }
